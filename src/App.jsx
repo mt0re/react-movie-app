@@ -29,6 +29,8 @@ const App = () => {
   const [moviesList, setMoviesList] = useState([])
   useDebounce(() => setDebounceSearchTerm(searchTerm), 3000, [searchTerm])
 
+  const [currentPage, setCurrentPage] = useState(1)
+
   const fetchMovies = async (query = '') => {
     setIsLoading(true)
     setErrorMessage('')
@@ -36,7 +38,7 @@ const App = () => {
     try {
       const endpoint = query ?
       `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}` :
-      `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`
+      `${API_BASE_URL}/discover/movie?page=${currentPage}&sort_by=vote_count.desc`
 
       const response  = await fetch(endpoint, API_OPTIONS)
 
@@ -79,6 +81,10 @@ const App = () => {
     } finally {
       setIsLoading(false)
     }
+  }
+
+  const handlePageClick = async () => {
+
   }
 
   useEffect(() => {
@@ -134,6 +140,10 @@ const App = () => {
                 ))}
               </ul>
             )}
+          </section>
+
+          <section>
+            <Pagination handlePageClick={handlePageClick}/>
           </section>
 
         </div>

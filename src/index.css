@@ -168,6 +168,30 @@
       @apply text-gray-100 font-medium text-base;
     }
   }
+
+  .wrapper-pagination {
+    @apply w-full flex bg-light-100/5 px-4 py-3 rounded-lg mt-10 max-w-3xl mx-auto items-center justify-center;
+  }
+
+  .pagination {
+    @apply text-gray-100 cursor-pointer flex gap-5 mx-6;
+
+    & li {
+      @apply px-2 py-2 text-center;
+    }
+
+    & a {
+      @apply text-gray-300 px-2 py-2;
+    }
+
+    & a:hover {
+      @apply bg-gray-100 text-dark-100 rounded-2xl px-2;
+    }
+
+    & .active {
+      @apply text-gray-300 text-center;
+    }
+  }
 }
 
 @utility text-gradient {

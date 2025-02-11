@@ -1,37 +1,21 @@
-import ReactPaginate from "react-paginate"
-import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai"
-import { IconContext } from "react-icons"
-import { useMemo, useState } from "react"
-const Pagination = ({ totalPages }) => {
-  const [page, setPage] = useState(0)
+import ReactPaginate from 'react-paginate';
 
-  /* const filterData = useMemo(() => {
-    return data.filter((item, index) => {
-        return (index >= page * totalPages) & (index < (page + 1) * totalPages);
-        })
-  }, [page]) */
+const Pagination = ({ handlePageClick }) => {
 
   return (
-    <>
+    <div className='wrapper-pagination'>
       <ReactPaginate
-        containerClassName={"pagination"}
-        pageClassName={"page-item"}
-        activeClassName={"active"}
-        onPageChange={(event) => setPage(event.selected)}
-        pageCount={Math.ceil(totalPages / totalPages)}
-        breakLabel="..."
-        previousLabel={
-          <IconContext.Provider value={{ color: "#B8C1CC", size: "36px" }}>
-            <AiFillLeftCircle />
-          </IconContext.Provider>
-        }
-        nextLabel={
-          <IconContext.Provider value={{ color: "#B8C1CC", size: "36px" }}>
-            <AiFillRightCircle />
-          </IconContext.Provider>
-        }
+        previousLabel={'<'}
+        nextLabel={'>'}
+        breakLabel={'...'}
+        pageCount={10}
+        marginPagesDisplayed={1}
+        pageRangeDisplayed={1}
+        onPageChange={handlePageClick}
+        containerClassName={'pagination'}
+        activeClassName={'active'}
       />
-    </>
+    </div>
   )
 }
 
